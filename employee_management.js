@@ -33,8 +33,14 @@ class Department { // Defining Department Class
 
 // Task 4: Handle Bonuses for Managers    
     calculateTotalSalaryWithBonus() { 
-
-    };
+        return this.employees.reduce((total, employee) => {
+            if (employee instanceof Manager) {
+                return total + employee.salary + employee.bonus; // Add salary and bonus for Managers
+            } else {
+                return total + employee.salary; // Just add salary for regular employees
+            }
+        }, 0); // Initial total is 0
+    }
 };    
 
 // Task 3: Create a Manager Class that Inherits from Employee
@@ -46,6 +52,33 @@ class Manager extends Employee { // Defining Manage class that inherits traits f
     };
 
     getDetails() { // Defining a method that includes bonus
-        console.log(`Employee: ${this.name}, Position: ${this.position}, Salary: $${this.salary}, Bonus: ${this.bonus}`)
-    }
-}
+        console.log(`Employee: ${this.name}, Position: ${this.position}, Salary: $${this.salary}, Bonus: $${this.bonus}`);
+    };
+};
+
+// Task 5: Create and Manage Departments and Employees
+
+// Create Departments
+const finance = new Department ("Finance");
+const marketing = new Department ("Marketing");
+const legal = new Department ("Legal")
+
+// Create Employees
+const marshall = new Manager ("Marshall", 90000, "Lawyer", "Legal", 1200);
+const lily = new Employee ("Lily", 75000, "Designer", "Marketing");
+const barney = new Manager ("Barney", 125000, "Analyst", "Finance", 30000);
+const robin = new Employee ("Robin", 88000, "Reporter", "Marketing");
+
+// Add employees to departments
+finance.addEmployee(barney);
+legal.addEmployee(marshall);
+marketing.addEmployee(robin);
+marketing.addEmployee(lily);
+
+// Calculate total salary for each department
+console.log(`Total Salary for the Finance Department: $${finance.getDepartmentSalary()}`);
+console.log(`Total Salary including bonuses for Finance: $${finance.calculateTotalSalaryWithBonus()}`);
+console.log(`Total Salary for the Marketing Department: $${marketing.getDepartmentSalary()}`);
+console.log(`Total Salary inclusing bonuses for Marketing: $${marketing.calculateTotalSalaryWithBonus()}`);
+console.log(`Total Salary for the Legal Department: $${legal.getDepartmentSalary()}`);
+console.log(`Total Salary including bonuses for Legal: $${legal.calculateTotalSalaryWithBonus()}`);
