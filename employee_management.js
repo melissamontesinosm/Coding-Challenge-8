@@ -1,7 +1,7 @@
 
 // Task 1: Create an Employee Class
 
-class Employee { 
+class Employee { // Defining Employee class
     constructor(name, salary, position, department) { // Implemented parameters
          this.name = name; // Denoting current instances 
          this.salary = salary;
@@ -14,8 +14,20 @@ class Employee {
      }
 };
 
-//Example Data
-const marshall = new Employee("Marshall", 90000, "Accountant", "Finance");
-const barney = new Employee("Barney", 95000, "Designer", "Marketing");
-const robin = new Employee("Robin", 80250, "Trader", "Finance");
-const lily = new Employee("Lily", 77750, "Secretary", "Finance");
+
+// Task 2: Create a Department Class
+
+class Department { // Defining Department Class
+    constructor(name) { 
+        this.name = name;
+        this.employees = [];
+    };
+
+    addEmployee(employee) { // Defining a method to add an employee object to an array
+        this.employees.push(employee); // Adds a new employee
+    };
+
+    getDepartmentSalary() { // Defining a method to add the total salary of all employees
+        return this.employees.reduce((total, employee) => total + employee.salary, 0); // Return result
+    };
+};
