@@ -30,4 +30,22 @@ class Department { // Defining Department Class
     getDepartmentSalary() { // Defining a method to add the total salary of all employees
         return this.employees.reduce((total, employee) => total + employee.salary, 0); // Return result
     };
-};
+
+// Task 4: Handle Bonuses for Managers    
+    calculateTotalSalaryWithBonus() { 
+
+    };
+};    
+
+// Task 3: Create a Manager Class that Inherits from Employee
+
+class Manager extends Employee { // Defining Manage class that inherits traits from employee class
+    constructor(name, salary, position, department, bonus) {
+        super(name, salary, position, department);
+        this.bonus = bonus;
+    };
+
+    getDetails() { // Defining a method that includes bonus
+        console.log(`Employee: ${this.name}, Position: ${this.position}, Salary: $${this.salary}, Bonus: ${this.bonus}`)
+    }
+}
